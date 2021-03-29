@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +41,7 @@ public class streamTests {
 
         List<String> flatListSkills = employees.stream()
                 .map(Employee::getSkills)
-                .flatMap(strings -> strings.stream())
+                .flatMap(Collection::stream)
                 .distinct()
                 .collect(Collectors.toList());
         System.out.println(flatListSkills);
