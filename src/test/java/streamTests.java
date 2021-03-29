@@ -37,5 +37,11 @@ public class streamTests {
         List<List<String>> allSkillsList = employees.stream()
                 .map(Employee::getSkills)
                 .collect(Collectors.toList());
+
+        List<String> flatListSkills = employees.stream()
+                .map(Employee::getSkills)
+                .flatMap(strings -> strings.stream())
+                .collect(Collectors.toList());
+        System.out.println(flatListSkills);
     }
 }
