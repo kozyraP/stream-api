@@ -68,18 +68,32 @@ public class streamTests {
     }
 
     @Test
-    public void skipOps(){
+    public void skipOps() {
         employees.stream()
                 .sorted(Comparator.comparing(Employee::getAge).reversed())
                 .skip(2)
                 .forEach(System.out::println);
     }
+
     @Test
-    public void countOps(){
+    public void countOps() {
         long employeesNumber = employees.stream()
                 .filter(employee -> employee.getAge() > 30)
                 .count();
 
         System.out.println(employeesNumber);
+    }
+
+    @Test
+    public void minMaxOps() {
+        Employee youngestEmployee = employees.stream()
+                .min(Comparator.comparing(Employee::getAge))
+                .get();
+        System.out.println(youngestEmployee);
+
+        Employee theOldestEmployee = employees.stream()
+                .max(Comparator.comparing(Employee::getAge))
+                .get();
+        System.out.println(theOldestEmployee);
     }
 }
