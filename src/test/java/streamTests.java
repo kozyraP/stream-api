@@ -21,7 +21,6 @@ public class streamTests {
 
     @Test
     public void testPrint(){
-        employees.stream()
-                .forEach(employee -> System.out.println(employee));
+        employees.forEach(System.out::println);
     }
 }
