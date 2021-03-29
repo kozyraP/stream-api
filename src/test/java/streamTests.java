@@ -58,4 +58,12 @@ public class streamTests {
                 .sorted(Comparator.comparing(Employee::getAge).reversed())
                 .forEach(System.out::println);
     }
+
+    @Test
+    public void limitOps() {
+        employees.stream()
+                .sorted(Comparator.comparing(employee -> employee.getLastName()))
+                .limit(3)
+                .forEach(System.out::println);
+    }
 }
