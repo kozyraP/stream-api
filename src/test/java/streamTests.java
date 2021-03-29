@@ -20,14 +20,14 @@ public class streamTests {
     }
 
     @Test
-    public void testPrint(){
+    public void testPrint() {
         employees.forEach(System.out::println);
     }
 
     @Test
-    public void mapOperation(){
+    public void mapOperation() {
         employees.stream()
-                .map(Employee::getFirstName)
+                .map(employee -> employee.getFirstName() + " " + employee.getLastName())
                 .forEach(System.out::println);
     }
 }
