@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class streamTests {
 
@@ -33,8 +34,8 @@ public class streamTests {
 
     @Test
     public void flatMapOperation() {
-        employees.stream()
+        List<List<String>> allSkillsList = employees.stream()
                 .map(Employee::getSkills)
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
     }
 }
