@@ -74,4 +74,12 @@ public class streamTests {
                 .skip(2)
                 .forEach(System.out::println);
     }
+    @Test
+    public void countOps(){
+        long employeesNumber = employees.stream()
+                .filter(employee -> employee.getAge() > 30)
+                .count();
+
+        System.out.println(employeesNumber);
+    }
 }
