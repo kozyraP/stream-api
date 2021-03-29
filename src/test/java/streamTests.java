@@ -27,7 +27,7 @@ public class streamTests {
     @Test
     public void mapOperation(){
         employees.stream()
-                .map(employee -> employee.getFirstName())
+                .map(Employee::getFirstName)
                 .forEach(System.out::println);
     }
 }
