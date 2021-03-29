@@ -30,4 +30,11 @@ public class streamTests {
                 .map(employee -> employee.getFirstName() + " " + employee.getLastName())
                 .forEach(System.out::println);
     }
+
+    @Test
+    public void flatMapOperation() {
+        employees.stream()
+                .map(Employee::getSkills)
+                .forEach(System.out::println);
+    }
 }
