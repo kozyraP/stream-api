@@ -47,4 +47,11 @@ public class streamTests {
                 .collect(Collectors.toList());
         System.out.println(flatListSkills);
     }
+
+    @Test
+    public void filterOperation() {
+        employees.stream()
+                .filter(employee -> employee.getFirstName().startsWith("J"))
+                .forEach(System.out::println);
+    }
 }
