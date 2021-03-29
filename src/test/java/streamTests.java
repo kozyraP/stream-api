@@ -23,4 +23,11 @@ public class streamTests {
     public void testPrint(){
         employees.forEach(System.out::println);
     }
+
+    @Test
+    public void mapOperation(){
+        employees.stream()
+                .map(employee -> employee.getFirstName())
+                .forEach(System.out::println);
+    }
 }
