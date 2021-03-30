@@ -131,12 +131,20 @@ public class streamTests {
     }
 
     @Test
-    public void reduceOpsStream(){
+    public void reduceOpsStream() {
         Integer sumOfAllAges = employees.stream()
                 .map(Employee::getAge)
-                .reduce((age1,age2) -> age1 + age2)
-                .orElse(null);//.get as an option with warning
-
+                .reduce(Integer::sum)
+                .get();
         System.out.println(sumOfAllAges);
+
+        Integer sumOfAllAges2 = employees.stream()
+                .map(Employee::getAge)
+                .reduce(1000, Integer::sum);
+        System.out.println(sumOfAllAges2);
+
+        Integer sumOfAllAges3 = employees.stream()
+                .reduce(0, (age, emp) -> age + emp.getAge(), Integer::sum);
+        System.out.println(sumOfAllAges3);
     }
 }
