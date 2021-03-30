@@ -129,4 +129,14 @@ public class streamTests {
                 .distinct()
                 .count());
     }
+
+    @Test
+    public void reduceOpsStream(){
+        Integer sumOfAllAges = employees.stream()
+                .map(Employee::getAge)
+                .reduce((age1,age2) -> age1 + age2)
+                .orElse(null);//.get as an option with warning
+
+        System.out.println(sumOfAllAges);
+    }
 }
