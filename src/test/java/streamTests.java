@@ -146,5 +146,11 @@ public class streamTests {
         Integer sumOfAllAges3 = employees.stream()
                 .reduce(0, (age, emp) -> age + emp.getAge(), Integer::sum);
         System.out.println(sumOfAllAges3);
+
+        System.out.println(employees.stream()
+                .map(emp -> emp.getFirstName() + " " + emp.getLastName())
+                .reduce((fullName, fullName2) -> fullName + " | " + fullName2)
+                .orElse("")
+        );
     }
 }
