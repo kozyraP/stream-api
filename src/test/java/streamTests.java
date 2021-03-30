@@ -1,10 +1,7 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class streamTests {
@@ -46,5 +43,114 @@ public class streamTests {
                 .distinct()
                 .collect(Collectors.toList());
         System.out.println(flatListSkills);
+    }
+
+    @Test
+    public void filterOperation() {
+        employees.stream()
+                .filter(employee -> employee.getFirstName().startsWith("J"))
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void sortOperation() {
+        employees.stream()
+                .sorted(Comparator.comparing(Employee::getAge).reversed())
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void limitOps() {
+        employees.stream()
+                .sorted(Comparator.comparing(Employee::getLastName))
+                .limit(3)
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void skipOps() {
+        employees.stream()
+                .sorted(Comparator.comparing(Employee::getAge).reversed())
+                .skip(2)
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void countOps() {
+        long employeesNumber = employees.stream()
+                .filter(employee -> employee.getAge() > 30)
+                .count();
+
+        System.out.println(employeesNumber);
+    }
+
+    @Test
+    public void minMaxOps() {
+        Employee youngestEmployee = employees.stream()
+                .min(Comparator.comparing(Employee::getAge))
+                .get();
+        System.out.println(youngestEmployee);
+
+        Employee theOldestEmployee = employees.stream()
+                .max(Comparator.comparing(Employee::getAge))
+                .get();
+        System.out.println(theOldestEmployee);
+    }
+
+    @Test
+    public void findAny() {
+        Employee emp = employees.stream()
+                .filter(employee -> employee.getSkills().contains("Java"))
+                .findAny() //.findFirst - another option to find
+                .orElse(null);
+        System.out.println(emp);
+    }
+
+    @Test
+    public void matchStream() {
+        System.out.println(employees.stream()
+                .allMatch(employee -> employee.getAge() > 18)
+        );
+
+        System.out.println(employees.stream()
+                .anyMatch(employee -> employee.getSkills().contains("Java"))
+        );
+
+        System.out.println(employees.stream()
+                .noneMatch(employee -> employee.getLastName().startsWith("K"))
+        );
+    }
+
+    @Test
+    public void countAllSkills() {
+        System.out.println(employees.stream()
+                .map(Employee::getSkills)
+                .flatMap(Collection::stream)
+                .distinct()
+                .count());
+    }
+
+    @Test
+    public void reduceOpsStream() {
+        Integer sumOfAllAges = employees.stream()
+                .map(Employee::getAge)
+                .reduce(Integer::sum)
+                .get();
+        System.out.println(sumOfAllAges);
+
+        Integer sumOfAllAges2 = employees.stream()
+                .map(Employee::getAge)
+                .reduce(1000, Integer::sum);
+        System.out.println(sumOfAllAges2);
+
+        Integer sumOfAllAges3 = employees.stream()
+                .reduce(0, (age, emp) -> age + emp.getAge(), Integer::sum);
+        System.out.println(sumOfAllAges3);
+
+        System.out.println(employees.stream()
+                .map(emp -> emp.getFirstName() + " " + emp.getLastName())
+                .reduce((fullName, fullName2) -> fullName + " | " + fullName2)
+                .orElse("")
+        );
     }
 }
