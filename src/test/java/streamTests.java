@@ -98,11 +98,26 @@ public class streamTests {
     }
 
     @Test
-    public void findAny(){
+    public void findAny() {
         Employee emp = employees.stream()
                 .filter(employee -> employee.getSkills().contains("Java"))
                 .findAny() //.findFirst - another option to find
                 .orElse(null);
         System.out.println(emp);
+    }
+
+    @Test
+    public void matchStream() {
+        System.out.println(employees.stream()
+                .allMatch(employee -> employee.getAge() > 18)
+        );
+
+        System.out.println(employees.stream()
+                .anyMatch(employee -> employee.getSkills().contains("Java"))
+        );
+
+        System.out.println(employees.stream()
+                .noneMatch(employee -> employee.getLastName().startsWith("K"))
+        );
     }
 }
