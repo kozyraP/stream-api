@@ -120,4 +120,13 @@ public class streamTests {
                 .noneMatch(employee -> employee.getLastName().startsWith("K"))
         );
     }
+
+    @Test
+    public void countAllSkills() {
+        System.out.println(employees.stream()
+                .map(Employee::getSkills)
+                .flatMap(Collection::stream)
+                .distinct()
+                .count());
+    }
 }
