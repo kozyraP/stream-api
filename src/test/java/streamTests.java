@@ -101,7 +101,7 @@ public class streamTests {
     public void findAny(){
         Employee emp = employees.stream()
                 .filter(employee -> employee.getSkills().contains("Java"))
-                .findAny()
+                .findAny() //.findFirst - another option to find
                 .orElse(null);
         System.out.println(emp);
     }
