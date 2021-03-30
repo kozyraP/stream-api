@@ -96,4 +96,13 @@ public class streamTests {
                 .get();
         System.out.println(theOldestEmployee);
     }
+
+    @Test
+    public void findAny(){
+        Employee emp = employees.stream()
+                .filter(employee -> employee.getSkills().contains("Java"))
+                .findAny()
+                .orElse(null);
+        System.out.println(emp);
+    }
 }
