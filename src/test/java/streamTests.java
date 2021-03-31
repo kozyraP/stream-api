@@ -177,6 +177,11 @@ public class streamTests {
     public void forEachOrderedStreamOperation() {
         String s = "Hello World!";
         s.chars().forEach(letter -> System.out.print((char) letter + " "));
+        System.out.println();
+        s.chars().parallel().forEach(letter -> System.out.print((char) letter + " "));
+        System.out.println();
+        s.chars().parallel().forEachOrdered(letter -> System.out.print((char) letter + " "));
+
     }
 
 }
