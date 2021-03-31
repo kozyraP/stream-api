@@ -155,7 +155,7 @@ public class streamTests {
     }
 
     @Test
-    public void takeWhileOps(){
+    public void takeWhileOps() {
         employees.stream()
                 .sorted(Comparator.comparing(Employee::getAge))
                 .takeWhile(emp -> emp.getAge() < 30)
@@ -163,5 +163,13 @@ public class streamTests {
 
         //in this case using filter is also appropriate, but in large data set it will be
         //better because this way quit processing when reach to takeWhile predicate.
+    }
+
+    @Test
+    public void dropWhileOps() {
+        employees.stream()
+                .sorted(Comparator.comparing(Employee::getAge))
+                .dropWhile(emp -> emp.getAge() < 30)
+                .forEach(System.out::println);
     }
 }
