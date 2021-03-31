@@ -181,7 +181,14 @@ public class streamTests {
         s.chars().parallel().forEach(letter -> System.out.print((char) letter + " "));
         System.out.println();
         s.chars().parallel().forEachOrdered(letter -> System.out.print((char) letter + " "));
+    }
 
+    @Test
+    public void peakTest() {
+        System.out.println(employees);
+        System.out.println(employees.stream()
+                .peek(employee -> employee.setFirstName("Test change"))
+                .collect(Collectors.toList()));
     }
 
 }
