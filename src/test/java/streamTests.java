@@ -153,4 +153,12 @@ public class streamTests {
                 .orElse("")
         );
     }
+
+    @Test
+    public void takeWhileOps(){
+        employees.stream()
+                .sorted(Comparator.comparing(Employee::getAge))
+                .takeWhile(emp -> emp.getAge() < 30)
+                .forEach(System.out::println);
+    }
 }
