@@ -160,5 +160,8 @@ public class streamTests {
                 .sorted(Comparator.comparing(Employee::getAge))
                 .takeWhile(emp -> emp.getAge() < 30)
                 .forEach(System.out::println);
+
+        //in this case using filter is also appropriate, but in large data set it will be
+        //better because this way quit processing when reach to takeWhile predicate.
     }
 }
