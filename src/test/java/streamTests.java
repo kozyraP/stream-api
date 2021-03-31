@@ -172,4 +172,11 @@ public class streamTests {
                 .dropWhile(emp -> emp.getAge() < 30)
                 .forEach(System.out::println);
     }
+
+    @Test
+    public void forEachOrderedStreamOperation() {
+        String s = "Hello World!";
+        s.chars().forEach(letter -> System.out.print((char) letter + " "));
+    }
+
 }
